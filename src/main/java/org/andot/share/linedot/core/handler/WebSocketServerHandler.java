@@ -88,7 +88,9 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         String lineId = data.getHeader().getToLineId();
 
         if (LineDotConfig.getUserChannelMap().containsKey(lineId)) {
+            log.info("{}消息收到：{}, 准备转发！", lineId, request);
             LineDotConfig.getUserChannelMap().get(lineId).channel().writeAndFlush(new TextWebSocketFrame(request));
+            log.info("{}消息转发成功！", lineId, request);
         }
 
         log.info(lineId + "消息收到：" + request);

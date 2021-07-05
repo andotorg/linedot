@@ -6,6 +6,7 @@ import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
 import io.netty.handler.codec.http.multipart.InterfaceHttpData;
 import io.netty.handler.codec.http.multipart.MemoryAttribute;
 import io.netty.util.internal.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
  * get请求地址路径参数获取工具类
  * @author andot
  */
+@Slf4j
 public class HttpRequestParamUtil {
     private HttpRequestParamUtil () {
 
@@ -47,6 +49,8 @@ public class HttpRequestParamUtil {
             if (str != null && str.length > 1) {
                 lineId = str[1];
             }
+        } else {
+            log.warn("line id is null!");
         }
         return lineId;
     }
